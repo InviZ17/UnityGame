@@ -23,6 +23,7 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetButtonDown("Fire2")){
             animator.SetBool("isShooting", true);
             Shoot();
@@ -30,11 +31,11 @@ public class PlayerShooting : MonoBehaviour
         else {
         animator.SetBool("isShooting", false);
         }
-       Vector2 positionOnScreen = cam.WorldToViewportPoint(rb.position);
-       Vector2 mouseOnScreen = (Vector2)cam.ScreenToViewportPoint(Input.mousePosition);
-       float angle = AngleBetweenTwoPoints(positionOnScreen,mouseOnScreen);
-       mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-       firePoint.rotation = Quaternion.Euler (new Vector3(0f,0f,angle));
+        Vector2 positionOnScreen = cam.WorldToViewportPoint(rb.position);
+        Vector2 mouseOnScreen = (Vector2)cam.ScreenToViewportPoint(Input.mousePosition);
+        float angle = AngleBetweenTwoPoints(positionOnScreen,mouseOnScreen);
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        firePoint.rotation = Quaternion.Euler (new Vector3(0f,0f,angle));
     }
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b){

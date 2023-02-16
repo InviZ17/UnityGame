@@ -106,7 +106,7 @@ MonoBehaviour:
   enemies:
     serializedVersion: 2
     m_Bits: 64
-  speed: 2
+  speed: 5
   animator: {fileID: 8170960817600460449}
 --- !u!50 &7238369583074231309
 Rigidbody2D:
@@ -116,19 +116,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4620153003884464410}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_Mass: 0.2
+  m_LinearDrag: 10
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6083512826681132795
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -187,3 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60156119bcaed6a4da4268cac9d761b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 7102945352736905960, guid: b1c6b833f4a906448b308eb8abe3831a, type: 3}
+  animator: {fileID: 0}
+  bulletForce: 5
