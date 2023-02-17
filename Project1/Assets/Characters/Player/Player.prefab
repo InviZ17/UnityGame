@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5637329300189247468}
   - component: {fileID: 4838482591283387183}
-  - component: {fileID: 3355418573913096771}
   - component: {fileID: 7238369583074231309}
   - component: {fileID: 6083512826681132795}
   - component: {fileID: 8170960817600460449}
   - component: {fileID: 9101721061011643203}
+  - component: {fileID: 3355418573913096771}
+  - component: {fileID: 4343559080940660467}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 820641269
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -694262055, guid: 87dceec692025584da1ea6cc50d6088d, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,25 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3355418573913096771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4620153003884464410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f9e18865fa22634eb32d468ed82b882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackLocation: {fileID: 0}
-  attackRange: 0.3
-  enemies:
-    serializedVersion: 2
-    m_Bits: 64
-  speed: 5
-  animator: {fileID: 8170960817600460449}
 --- !u!50 &7238369583074231309
 Rigidbody2D:
   serializedVersion: 4
@@ -146,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.17, y: 0.29}
+    oldSize: {x: 0.2, y: 0.2}
     newSize: {x: 0.17, y: 0.29}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -192,3 +174,33 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7102945352736905960, guid: b1c6b833f4a906448b308eb8abe3831a, type: 3}
   animator: {fileID: 0}
   bulletForce: 5
+--- !u!114 &3355418573913096771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620153003884464410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9e18865fa22634eb32d468ed82b882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+--- !u!114 &4343559080940660467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620153003884464410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1050f1587b7499e4bb0b43fc1f4fea00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackLocation: {fileID: 0}
+  attackRange: 0.3
+  enemies:
+    serializedVersion: 2
+    m_Bits: 64
