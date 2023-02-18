@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerMelee : MonoBehaviour
 {
+
+
     public float dashDistance = 0.3f;
+    public float attackRadius = 1f;
     public float damage = 1f;
     public float knockback = 1f;
     public float knockoutDuration = 1f;
@@ -38,10 +41,17 @@ public class PlayerMelee : MonoBehaviour
     public static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera){
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
         return worldPosition;
+
+    }void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(attackLocation.position, 0.05f*attackRadius);
     }
 
     void Update()
     {
+        
         Vector3 mousePosition = GetMouseWorldPosition();
         Vector3 attackDir = (mousePosition - transform.position).normalized;
         if (Time.time >= nextAttackDuration |  !isAttacking){
@@ -50,8 +60,6 @@ public class PlayerMelee : MonoBehaviour
         if (Input.GetButton("Fire1")){
             nextAttackTime = Time.time + 1f/attackRate;
             rb.AddForce(attackDir * 100*dashDistance);
-            //transform.position += attackDir * dashDistance;
-            animator.SetBool("isAttacking", true);
             attackLocation.position = transform.position+0.3f*attackRange*attackDir;
             nextAttackDuration = Time.time + attackDuration;
             isAttacking = true;
@@ -60,7 +68,6 @@ public class PlayerMelee : MonoBehaviour
         }
         }
         else {
-            animator.SetBool("isAttacking", false);
             //attackLocation.position = transform.position+0.1f*attackRange*attackDir;
             attackLocation.position = transform.position;
         }
@@ -68,7 +75,7 @@ public class PlayerMelee : MonoBehaviour
 
         //Обработка попадания
         if (isAttacking){
-        Collider2D[] damageC = Physics2D.OverlapCircleAll( attackLocation.position, 0.05f*attackRange, enemies );
+        Collider2D[] damageC = Physics2D.OverlapCircleAll( attackLocation.position, 0.05f*attackRadius, enemies );
         if (damageC.Length>0){
               for (int i = 0; i < damageC.Length; i++)
                  {
@@ -81,5 +88,7 @@ public class PlayerMelee : MonoBehaviour
         isAttacking = false;
         }
         }
+
+
     }
 }

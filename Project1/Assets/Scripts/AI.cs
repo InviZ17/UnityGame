@@ -17,6 +17,8 @@ public class AI : MonoBehaviour
         Dh = GetComponent<DamageHandler>();
     }
 
+
+    
     void FixedUpdate()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
