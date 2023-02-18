@@ -21,19 +21,6 @@ public class PlayerMovement : MonoBehaviour
         //Считывание клавиш движения
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
-
-        //Изменение направления спрайта
-        if (direction.x<0) {
-            Vector3 lTemp = transform.localScale;
-            lTemp.x = -1.5f;
-            transform.localScale = lTemp;
-        }
-        else if (direction.x>0){
-            Vector3 lTemp = transform.localScale;
-            lTemp.x = 1.5f;
-            transform.localScale = lTemp;
-        }
-
         //Анимация бега
         animator.SetFloat("Speed", direction.sqrMagnitude);
 
