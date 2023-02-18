@@ -61,20 +61,21 @@ public class PlayerMelee : MonoBehaviour
         }
         else {
             animator.SetBool("isAttacking", false);
-            attackLocation.position = transform.position+0.1f*attackRange*attackDir;
+            //attackLocation.position = transform.position+0.1f*attackRange*attackDir;
+            attackLocation.position = transform.position;
         }
         }
 
         //Обработка попадания
         if (isAttacking){
-        Collider2D[] damageC = Physics2D.OverlapCircleAll( attackLocation.position, 0.01f*attackRange, enemies );
+        Collider2D[] damageC = Physics2D.OverlapCircleAll( attackLocation.position, 0.05f*attackRange, enemies );
         if (damageC.Length>0){
               for (int i = 0; i < damageC.Length; i++)
                  {
                   //Animator anim = damage[i].gameObject.GetComponent<Animator>();
                   //anim.SetBool("isDead",true);
                   //Destroy( damageC[i].gameObject);
-                  damageC[i].GetComponent<DamageHandler>().TakeDamage(damage,knockback,attackDir);
+                  damageC[i].GetComponent<DamageHandler>().TakeDamage(damage,20*knockback,attackDir);
                   damageC[i].GetComponent<DamageHandler>().Knockout(knockoutDuration);
                  }
         isAttacking = false;
