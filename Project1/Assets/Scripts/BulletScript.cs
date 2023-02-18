@@ -10,7 +10,6 @@ public class BulletScript : MonoBehaviour
     void Start()
     {
         pTemp=GameObject.Find("Player");
-        Debug.Log(pTemp);
     }
 
 
