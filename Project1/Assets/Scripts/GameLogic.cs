@@ -18,6 +18,9 @@ public class GameLogic : MonoBehaviour
         if (Input.GetKeyDown("r")){
             ResetTheGame();
         }
+        if (Input.GetKeyDown("escape")){
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void ResetTheGame()
