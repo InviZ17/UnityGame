@@ -5,8 +5,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] spawns;
+    public GameObject ItemSpawn;
+    public GameObject center;
     public List<GameObject> enemies;
     public GameObject enemy;
+    public GameObject item;
     public int maxEnemy;
     void Start()
     {
@@ -20,6 +23,12 @@ public class EnemySpawner : MonoBehaviour
                 spawns[k] = spawns[k+1];
             }
             System.Array.Resize(ref spawns, spawns.Length-1);
+        }
+        SpawnItem();
+    }
+    void SpawnItem(){
+        if (center.GetComponent<RoomHandler>().routes == 1){
+            Instantiate(item, ItemSpawn.transform.position, ItemSpawn.transform.rotation);
         }
     }
 

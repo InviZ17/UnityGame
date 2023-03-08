@@ -2747,6 +2747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exits: 4
+  routes: 0
 --- !u!1001 &2492764882441288127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3088,6 +3089,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4203886601425405739}
     m_Modifications:
+    - target: {fileID: 1628701218004531591, guid: 16ff365703c34624eb201fdee68536a3, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 5613361969238706198, guid: 3b7727a102b581648a2d695a5dcd6936, type: 3}
+    - target: {fileID: 1628701218004531591, guid: 16ff365703c34624eb201fdee68536a3, type: 3}
+      propertyPath: center
+      value: 
+      objectReference: {fileID: 7821327572063305501}
+    - target: {fileID: 1628701218004531591, guid: 16ff365703c34624eb201fdee68536a3, type: 3}
+      propertyPath: ItemSpawn
+      value: 
+      objectReference: {fileID: 3785705760226617512}
     - target: {fileID: 8349727125227869107, guid: 16ff365703c34624eb201fdee68536a3, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3146,6 +3159,11 @@ Transform:
 --- !u!1 &1837740401300261647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8738324015665345155, guid: 16ff365703c34624eb201fdee68536a3, type: 3}
+  m_PrefabInstance: {fileID: 6972755630626814348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3785705760226617512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6074708393747583268, guid: 16ff365703c34624eb201fdee68536a3, type: 3}
   m_PrefabInstance: {fileID: 6972755630626814348}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8529390454204678155 stripped

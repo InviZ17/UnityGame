@@ -56,8 +56,6 @@ public class DoorSpawner : MonoBehaviour
                 playerOffset = new Vector3(2f,0f,0f);
                 rot = new Vector3(0f,0f,270f);
             }
-            //door1 = Instantiate(door,transform.position, transform.rotation);
-            //door1.transform.Rotate(rot);
         if (!spawned){
   
             if (center.GetComponent<RoomHandler>().exits == 1 && Logic.roomNumber < Logic.maxRooms){
@@ -73,6 +71,7 @@ public class DoorSpawner : MonoBehaviour
                 room1 = Instantiate(room, this.transform.position + roomOffset, room.transform.rotation);
                 Logic.roomNumber +=1;
                 center.GetComponent<RoomHandler>().exits -=1;
+                center.GetComponent<RoomHandler>().routes +=1;
             }
             else {
                 needWall = true;
@@ -89,7 +88,7 @@ public class DoorSpawner : MonoBehaviour
         for (i = 0; i<collide.Length; i++){
             if (collide[i].gameObject.CompareTag("Door") || collide[i].gameObject.CompareTag("TriggerWall")){
                 if (collide[i].gameObject.CompareTag("Door") && wall1!=null){
-                    //needWall = false;
+                    center.GetComponent<RoomHandler>().routes +=1;
                     Destroy(wall1);
                 }
                 return;
@@ -115,6 +114,7 @@ public class DoorSpawner : MonoBehaviour
         if (other.CompareTag("Door")){
                 spawned = true;
                 center.GetComponent<RoomHandler>().exits -=1;
+                center.GetComponent<RoomHandler>().routes +=1;
             }
 
         if (other.CompareTag("TriggerWall")){
