@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - Spawnpoint
   - Room
+  - GameLogic
+  - Door
+  - TriggerWall
+  - Fog
   layers:
   - Default
   - TransparentFX
@@ -49,4 +53,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 820641269
+    locked: 0
+  - name: Fog
+    uniqueID: 335399757
     locked: 0

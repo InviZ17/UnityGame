@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8241270232123346670
+--- !u!1 &1715633256520308212
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6447587689139705546}
-  - component: {fileID: 3025326871314314477}
-  - component: {fileID: 4369890390299497904}
-  - component: {fileID: 7728168128350845668}
+  - component: {fileID: 8793637334415183789}
+  - component: {fileID: 5761530145788587995}
+  - component: {fileID: 8530693183185708614}
+  - component: {fileID: 4664110354641125468}
   m_Layer: 0
-  m_Name: SpawnL
-  m_TagString: Spawnpoint
+  m_Name: DoorLeft
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6447587689139705546
+--- !u!4 &8793637334415183789
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8241270232123346670}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.04, y: 0, z: 0}
+  m_GameObject: {fileID: 1715633256520308212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1999998, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &3025326871314314477
+--- !u!50 &5761530145788587995
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8241270232123346670}
+  m_GameObject: {fileID: 1715633256520308212}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -55,13 +55,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4369890390299497904
+--- !u!61 &8530693183185708614
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8241270232123346670}
+  m_GameObject: {fileID: 1715633256520308212}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -81,17 +81,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7728168128350845668
+--- !u!114 &4664110354641125468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8241270232123346670}
+  m_GameObject: {fileID: 1715633256520308212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f06db054caa5d147840d455872a7b88, type: 3}
+  m_Script: {fileID: 11500000, guid: 83d0b0eb8940634428e5e97b38859cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingDirection: 4
-  waitTime: 4
+  room1: {fileID: 0}
+  spawned: 0
+  wall: {fileID: 8427084738611846018, guid: f39a5406b40f7b048acc1ea9bb7b60ad, type: 3}
+  wall1: {fileID: 0}
+  direction: 3
+  needWall: 0
+  roomOfs: 0
+  center: {fileID: 0}

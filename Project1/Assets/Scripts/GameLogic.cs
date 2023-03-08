@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int roomNumber = 0;
+    public int maxRooms;
+    public float roomOffset = 3.84f;
+    public GameObject room;
     void Start()
     {
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("r")){
