@@ -11,6 +11,7 @@ TagManager:
   - Door
   - TriggerWall
   - Fog
+  - EnemySpawn
   layers:
   - Default
   - TransparentFX

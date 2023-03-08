@@ -8,10 +8,13 @@ public class DoorSpawner : MonoBehaviour
     public bool spawned = false;
     public GameObject wall;
     public GameObject wall1;
+    //public GameObject door;
+    //public GameObject door1;
     public int direction;
     public bool needWall=false;
     public float roomOfs;
     public GameObject center;
+    public EnemySpawner enemySpawner;
 
     private int opened;
     private GameObject room;
@@ -53,6 +56,8 @@ public class DoorSpawner : MonoBehaviour
                 playerOffset = new Vector3(2f,0f,0f);
                 rot = new Vector3(0f,0f,270f);
             }
+            //door1 = Instantiate(door,transform.position, transform.rotation);
+            //door1.transform.Rotate(rot);
         if (!spawned){
   
             if (center.GetComponent<RoomHandler>().exits == 1 && Logic.roomNumber < Logic.maxRooms){
@@ -116,7 +121,7 @@ public class DoorSpawner : MonoBehaviour
             spawned = true;
             needWall = true;
         }
-        if (other.CompareTag("Player") && !needWall){
+        if (other.CompareTag("Player") && !needWall && enemySpawner.enemies.Count == 0){
             GameObject.FindGameObjectWithTag("MainCamera").transform.position += roomOffset*2-playerOffset/3f;
             other.transform.position += playerOffset;
         }
