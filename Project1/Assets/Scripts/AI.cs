@@ -7,12 +7,12 @@ public class AI : MonoBehaviour
     public GameObject player;
     public float speed;
     private float distance;
-    private GameObject pTemp;
+    //private GameObject pTemp;
     private Rigidbody2D rb;
     private DamageHandler Dh;
     void Start()
     {
-        pTemp=GameObject.Find("Player");
+        player=GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         Dh = GetComponent<DamageHandler>();
     }
@@ -27,9 +27,11 @@ public class AI : MonoBehaviour
         if (Time.time >= Dh.KnockoutTime)
         rb.MovePosition(Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime));
     }
-    void OnCollisionEnter2D(Collision2D other){
-        if(pTemp.GetInstanceID()==other.gameObject.GetInstanceID()){
-        if (Time.time >= Dh.KnockoutTime) Destroy(other.gameObject);
+    void OnCollisionStay2D(Collision2D other){
+        if(player.GetInstanceID()==other.gameObject.GetInstanceID()){
+            if (Time.time >= Dh.KnockoutTime) {
+                other.gameObject.GetComponent<PlayerHealth>().takeDamage(1);
+            }
         }
     }
 }

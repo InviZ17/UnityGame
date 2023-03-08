@@ -8,8 +8,6 @@ public class DoorSpawner : MonoBehaviour
     public bool spawned = false;
     public GameObject wall;
     public GameObject wall1;
-    //public GameObject door;
-    //public GameObject door1;
     public int direction;
     public bool needWall=false;
     public float roomOfs;
