@@ -8,8 +8,11 @@ public class RoomHandler : MonoBehaviour
     public int routes = 0;
     private float distance;
     private GameLogic Logic;
+    public GameObject[] rooms;
+    public GameObject roomLayout;
 
     void Start(){
+        roomLayout = Instantiate(rooms[Random.Range(0,rooms.Length)], this.transform.position, this.transform.rotation, this.transform);
         Logic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
         distance = Vector2.Distance(transform.position, new Vector3(0f,0f,0f));
         if (Logic.maxDist < distance){

@@ -13,8 +13,10 @@ public class EnemySpawner : MonoBehaviour
     public GameObject item;
     public int maxEnemy;
     private GameLogic Logic;
+
     void Start()
     {
+        center = this.transform.parent.gameObject;
         Logic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
     }
     public void Spawn(){

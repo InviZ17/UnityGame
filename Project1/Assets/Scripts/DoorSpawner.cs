@@ -118,16 +118,20 @@ public class DoorSpawner : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("Door") && other.GetComponent<DoorSpawner>().spawned == true){
-                init = true;
-                center.GetComponent<RoomHandler>().exits -=1;
-                center.GetComponent<RoomHandler>().routes +=1;
-            }
+        enemySpawner = center.GetComponent<RoomHandler>().roomLayout.GetComponent<EnemySpawner>();
+        if (!init){
+            if (other.CompareTag("Door") && other.GetComponent<DoorSpawner>().spawned == true){
+                    init = true;
+                    center.GetComponent<RoomHandler>().exits -=1;
+                    center.GetComponent<RoomHandler>().routes +=1;
+                }
 
-        if (other.CompareTag("TriggerWall")){
-            init = true;
-            needWall = true;
+            if (other.CompareTag("TriggerWall")){
+                init = true;
+                needWall = true;
+            }
         }
+        
         if (other.CompareTag("Player") && !needWall && enemySpawner.enemies.Count == 0){
             GameObject.FindGameObjectWithTag("MainCamera").transform.position += roomOffset*2-playerOffset/3f;
             other.transform.position += playerOffset;
