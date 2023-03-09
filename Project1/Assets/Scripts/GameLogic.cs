@@ -9,6 +9,8 @@ public class GameLogic : MonoBehaviour
     public int roomNumber = 0;
     public int maxRooms;
     public float roomOffset = 3.84f;
+    public float maxDist = 0f;
+    public GameObject farestRoom;
     public GameObject room;
     public GameObject wall;
     private GameObject[] fog;
@@ -28,7 +30,6 @@ public class GameLogic : MonoBehaviour
         }
         if (Input.GetKeyDown("n")){
             for (int i = 0;i<fog.Length;i++){
-                Debug.Log(fog[i].GetComponent<FogReveal>().debugReveal);
                 fog[i].GetComponent<FogReveal>().debugSpawn = !fog[i].GetComponent<FogReveal>().debugSpawn;
 
             }

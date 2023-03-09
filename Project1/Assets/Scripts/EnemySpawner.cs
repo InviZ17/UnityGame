@@ -12,13 +12,23 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy;
     public GameObject item;
     public int maxEnemy;
+    private GameLogic Logic;
     void Start()
     {
-        
+        Logic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
     }
     public void Spawn(){
         if (!disableSpawn){
-            for (int j = 0; j<Random.Range(1, maxEnemy); j++){
+            
+            if (Logic.farestRoom == center){
+                Debug.Log("Boss");
+                Instantiate(enemy, center.transform.position, enemy.transform.rotation,this.gameObject.transform);
+            }
+            else if (center.GetComponent<RoomHandler>().routes == 1){
+                SpawnItem();
+            }
+            else {
+                for (int j = 0; j<Random.Range(1, maxEnemy); j++){
                 int rand = Random.Range(0,spawns.Length);
                 enemies.Add(Instantiate(enemy, spawns[rand].transform.position,spawns[rand].transform.rotation, this.gameObject.transform));
                 for (int k = rand; k<spawns.Length-1; k++){
@@ -26,13 +36,11 @@ public class EnemySpawner : MonoBehaviour
                 }
                 System.Array.Resize(ref spawns, spawns.Length-1);
             }
-            SpawnItem();
+            }
         }
     }
     void SpawnItem(){
-        if (center.GetComponent<RoomHandler>().routes == 1){
             Instantiate(item, ItemSpawn.transform.position, ItemSpawn.transform.rotation);
-        }
     }
 
 
