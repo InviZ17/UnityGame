@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemySpawner: {fileID: 1837740401300261647}
+  debugReveal: 1
+  debugSpawn: 1
 --- !u!1 &3191026187841153424
 GameObject:
   m_ObjectHideFlags: 0

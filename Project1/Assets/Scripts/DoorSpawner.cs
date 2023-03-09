@@ -5,8 +5,8 @@ using UnityEngine;
 public class DoorSpawner : MonoBehaviour
 {
     public GameObject room1;
+    public bool init = false;
     public bool spawned = false;
-    public GameObject wall;
     public GameObject wall1;
     public int direction;
     public bool needWall=false;
@@ -16,6 +16,7 @@ public class DoorSpawner : MonoBehaviour
 
     private int opened;
     private GameObject room;
+    private GameObject wall;
     private GameLogic Logic;
     private Vector3 roomOffset;
     private Vector3 playerOffset;
@@ -25,16 +26,10 @@ public class DoorSpawner : MonoBehaviour
     void Start(){
         Logic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
         room = Logic.room;
+        wall = Logic.wall;
         roomOfs = Logic.roomOffset;
         float rand = Random.Range(20,30)/100f;
-        Invoke("Spawn", rand);
-        Invoke("BugFixer", 2f);
-        
-    }
-
-
-    void Spawn(){
-            if (direction == 1){
+        if (direction == 1){
                 roomOffset = new Vector3(0f,roomOfs,0f);
                 playerOffset = new Vector3(0f,2f,0f);
                 rot = new Vector3(0f,0f,0f);
@@ -54,9 +49,16 @@ public class DoorSpawner : MonoBehaviour
                 playerOffset = new Vector3(2f,0f,0f);
                 rot = new Vector3(0f,0f,270f);
             }
-        if (!spawned){
+        Invoke("Spawn", rand);
+        //Invoke("BugFixer", 2f);
+    }
+
+
+    void Spawn(){ 
+        if (!init){
   
-            if (center.GetComponent<RoomHandler>().exits == 1 && Logic.roomNumber < Logic.maxRooms){
+            if ((center.GetComponent<RoomHandler>().exits == 1 && Logic.roomNumber < Logic.maxRooms)
+                || (center.GetComponent<RoomHandler>().exits - center.GetComponent<RoomHandler>().routes == 1 && Logic.roomNumber < Logic.maxRooms)){
                 opened = 1;
             }
             else if (Logic.roomNumber < Logic.maxRooms){
@@ -66,42 +68,49 @@ public class DoorSpawner : MonoBehaviour
                 opened = 0;
             }
             if (opened == 1) {
-                room1 = Instantiate(room, this.transform.position + roomOffset, room.transform.rotation);
-                Logic.roomNumber +=1;
-                center.GetComponent<RoomHandler>().exits -=1;
-                center.GetComponent<RoomHandler>().routes +=1;
+                Collider2D[] check = Physics2D.OverlapCircleAll( this.transform.position + roomOffset, 0.01f);
+                for (int i = 0; i<check.Length;i++){
+                    if (check[i].CompareTag("Center")){
+                        init = true;
+                    }
+                }
+                if (!init){
+                    room1 = Instantiate(room, this.transform.position + roomOffset, room.transform.rotation);
+                    Logic.roomNumber +=1;
+                    spawned = true;
+                    center.GetComponent<RoomHandler>().exits -=1;
+                    center.GetComponent<RoomHandler>().routes +=1;
+                }
             }
             else {
                 needWall = true;
             }
-            spawned = true;
+            init = true;
             
         }
 
     }
 
-    void BugFixer(){
-        Collider2D[] collide = Physics2D.OverlapCircleAll( transform.position, 0.05f);
-        int i;
-        for (i = 0; i<collide.Length; i++){
-            if (collide[i].gameObject.CompareTag("Door") || collide[i].gameObject.CompareTag("TriggerWall")){
-                if (collide[i].gameObject.CompareTag("Door") && wall1!=null){
-                    center.GetComponent<RoomHandler>().routes +=1;
-                    Destroy(wall1);
-                }
-                return;
-            }
-        }
-        if (collide.Length >0){
-        needWall = true;
-        }
-        //wall1 = Instantiate(wall, transform.position, wall.transform.rotation,this.gameObject.transform);
-    }
+    // void BugFixer(){
+    //     Collider2D[] collide = Physics2D.OverlapCircleAll( transform.position, 0.05f);
+    //     int i;
+    //     for (i = 0; i<collide.Length; i++){
+    //         if (collide[i].gameObject.CompareTag("Door") || collide[i].gameObject.CompareTag("TriggerWall")){
+    //             if (collide[i].gameObject.CompareTag("Door") && wall1!=null){
+    //                 center.GetComponent<RoomHandler>().routes +=1;
+    //                 Destroy(wall1);
+    //             }
+    //             return;
+    //         }
+    //     }
+    //     if (collide.Length >0){
+    //     needWall = true;
+    //     }
+    // }
     void Update(){
         if (needWall && wall1 == null){
             center.GetComponent<RoomHandler>().exits -=1;
-            
-            //wall.transform.rotation
+
             wall1 = Instantiate(wall, transform.position, wall.transform.rotation,this.gameObject.transform);
             wall1.transform.Rotate(rot);
         }
@@ -109,14 +118,14 @@ public class DoorSpawner : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("Door")){
-                spawned = true;
+        if (other.CompareTag("Door") && other.GetComponent<DoorSpawner>().spawned == true){
+                init = true;
                 center.GetComponent<RoomHandler>().exits -=1;
                 center.GetComponent<RoomHandler>().routes +=1;
             }
 
         if (other.CompareTag("TriggerWall")){
-            spawned = true;
+            init = true;
             needWall = true;
         }
         if (other.CompareTag("Player") && !needWall && enemySpawner.enemies.Count == 0){

@@ -12,6 +12,7 @@ TagManager:
   - TriggerWall
   - Fog
   - EnemySpawn
+  - Center
   layers:
   - Default
   - TransparentFX

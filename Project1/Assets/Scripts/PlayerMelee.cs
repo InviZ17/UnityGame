@@ -79,9 +79,7 @@ public class PlayerMelee : MonoBehaviour
         if (damageC.Length>0){
               for (int i = 0; i < damageC.Length; i++)
                  {
-                  //Animator anim = damage[i].gameObject.GetComponent<Animator>();
-                  //anim.SetBool("isDead",true);
-                  //Destroy( damageC[i].gameObject);
+
                   damageC[i].GetComponent<DamageHandler>().TakeDamage(damage,20*knockback,attackDir);
                   damageC[i].GetComponent<DamageHandler>().Knockout(knockoutDuration);
                  }

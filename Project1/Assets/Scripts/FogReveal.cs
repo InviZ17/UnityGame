@@ -6,13 +6,20 @@ public class FogReveal : MonoBehaviour
 {
     public GameObject EnemySpawner;
     private bool spawned = false;
+    public bool debugReveal = true;
+    public bool debugSpawn = true;
     void Start()
     {
-        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
-    void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("Player")){
-            if (!spawned){
+    void Update(){
+        if (debugReveal){
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+    void OnTriggerStay2D(Collider2D other){
+        if (other.CompareTag("Player") && !debugReveal){
+            if (!spawned && !debugSpawn){
                 EnemySpawner.GetComponent<EnemySpawner>().Spawn();
                 spawned = true;
             }
@@ -20,7 +27,7 @@ public class FogReveal : MonoBehaviour
         }
     }
     void OnTriggerExit2D(Collider2D other){
-        if (other.CompareTag("Player")){
+        if (other.CompareTag("Player") && !debugReveal){
             GetComponent<SpriteRenderer>().enabled = true;
         }
     }
