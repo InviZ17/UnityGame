@@ -33,7 +33,7 @@ public class ItemScript : MonoBehaviour
             pMelee.attackRange += pMelee.attackRange*attackRange/100f;
             pMelee.attackRate += pMelee.attackRate*attackRate/100f;
             pMelee.attackDuration += pMelee.attackDuration*attackDuration/100f;
-            pTemp.GetComponent<PlayerMovement>().speed += pTemp.GetComponent<PlayerMovement>().speed*speed/100f;
+            // pTemp.GetComponent<PlayerMovement>().speed += pTemp.GetComponent<PlayerMovement>().speed*speed/100f;
             Destroy(gameObject);
         }
 
