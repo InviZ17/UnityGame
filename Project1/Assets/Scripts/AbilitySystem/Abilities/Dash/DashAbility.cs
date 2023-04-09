@@ -19,7 +19,7 @@ public class DashAbility : Ability
         Camera cam = Camera.main;
 
         Vector3 mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector2 direction = (new Vector2(mousePos.x, mousePos.y) - (Vector2) pc.transform.position).normalized;
+        Vector2 direction = (new Vector2(mousePos.x, mousePos.y) - (Vector2)pc.transform.position).normalized;
 
         Vector2 dashVelocity = direction * dashSpeed;
         Vector2 movement = Vector2.ClampMagnitude(dashVelocity, maxRange);
@@ -29,8 +29,6 @@ public class DashAbility : Ability
 
     private IEnumerator PerformDash(PlayerController pc, Vector2 dashVelocity)
     {
-        Vector2 startingPosition = pc.transform.position;
-
         HashSet<GameObject> hitEnemies = new HashSet<GameObject>(); // Store hit enemies
 
         float elapsedTime = 0f;
@@ -42,29 +40,13 @@ public class DashAbility : Ability
 
             Vector2 movement = dashVelocity * delta;
 
-            // Use overlap checks to detect if the player is about to collide with a wall
-            Collider2D[] colliders = Physics2D.OverlapBoxAll(startingPosition + movement,
-                pc.GetComponent<BoxCollider2D>().size, 0f, playerCollisionLayer);
-            if (colliders.Length > 0)
-            {
-                // The player is about to collide with a wall, so adjust the movement vector to move just outside the collider
-                Vector2 adjustedMovement = Vector2.zero;
-                foreach (Collider2D collider in colliders)
-                {
-                    Vector2 closestPoint = collider.ClosestPoint(startingPosition);
-                    Vector2 direction = (closestPoint - startingPosition).normalized;
-                    RaycastHit2D hit = Physics2D.Raycast(startingPosition, direction, movement.magnitude,
-                        playerCollisionLayer);
-                    if (hit.collider == collider)
-                    {
-                        // The player is going to collide with this collider, so adjust the movement vector
-                        float distance = hit.distance;
-                        Vector2 adjustment = direction * (distance - 0.01f);
-                        adjustedMovement += adjustment;
-                    }
-                }
 
-                movement = adjustedMovement;
+            // Use raycasts to detect if the player is about to collide with a wall
+            RaycastHit2D hitWall = Physics2D.Raycast(pc.transform.position, movement.normalized, movement.magnitude, playerCollisionLayer);
+            if (hitWall.collider != null)
+            {
+                float distance = hitWall.distance - 0.01f;
+                movement = movement.normalized * distance;
             }
 
             // Use raycasts to detect if the player is about to collide with an enemy
@@ -94,7 +76,7 @@ public class DashAbility : Ability
                 }
             }
 
-            pc.transform.position += (Vector3) movement;
+            pc.transform.position += (Vector3)movement;
 
             elapsedTime += delta;
 
