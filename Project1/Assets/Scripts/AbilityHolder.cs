@@ -35,6 +35,8 @@ public class AbilityHolder : MonoBehaviour
 
     void Update()
     {
+        if (ability == null) return; // Add this line to check if the ability is null
+
         switch (_state)
         {
             case AbilityState.ready:
@@ -70,5 +72,6 @@ public class AbilityHolder : MonoBehaviour
         }
     }
 
-    
+
+
 }

@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 public class DashAbility : Ability
 {
     public float dashSpeed;
-    public float maxClampMagnitude;
     public float maxRange;
     public float maxHitRange;
     public LayerMask collisionLayer;
+    public LayerMask playerCollisionLayer;
 
     public override void Activate(GameObject parent)
     {
@@ -19,30 +19,60 @@ public class DashAbility : Ability
         Camera cam = Camera.main;
 
         Vector3 mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector2 direction = (new Vector2(mousePos.x, mousePos.y) - (Vector2)pc.transform.position).normalized;
+        Vector2 direction = (new Vector2(mousePos.x, mousePos.y) - (Vector2) pc.transform.position).normalized;
 
-        Vector2 movement = Vector2.ClampMagnitude(direction, maxClampMagnitude);
+        Vector2 dashVelocity = direction * dashSpeed;
+        Vector2 movement = Vector2.ClampMagnitude(dashVelocity, maxRange);
 
         CoroutineRunner.instance.StartCoroutine(PerformDash(pc, movement));
     }
 
-    private IEnumerator PerformDash(PlayerController pc, Vector2 dashDirection)
+    private IEnumerator PerformDash(PlayerController pc, Vector2 dashVelocity)
     {
-        float duration = maxRange / dashSpeed;
-
-        float elapsedTime = 0f;
-        Vector3 startingPosition = pc.transform.position;
-        Vector3 targetPosition = startingPosition + (Vector3)dashDirection * maxRange;
+        Vector2 startingPosition = pc.transform.position;
 
         HashSet<GameObject> hitEnemies = new HashSet<GameObject>(); // Store hit enemies
 
-        while (elapsedTime <= duration)
+        float elapsedTime = 0f;
+        while (elapsedTime < maxRange / dashSpeed)
         {
-            RaycastHit2D hit = Physics2D.Raycast(pc.transform.position, dashDirection, maxHitRange, collisionLayer);
+            float delta = Time.deltaTime;
+            float remainingTime = (maxRange / dashSpeed) - elapsedTime;
+            delta = Mathf.Min(delta, remainingTime);
 
-            if (hit.collider != null)
+            Vector2 movement = dashVelocity * delta;
+
+            // Use overlap checks to detect if the player is about to collide with a wall
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(startingPosition + movement,
+                pc.GetComponent<BoxCollider2D>().size, 0f, playerCollisionLayer);
+            if (colliders.Length > 0)
             {
-                GameObject other = hit.collider.gameObject;
+                // The player is about to collide with a wall, so adjust the movement vector to move just outside the collider
+                Vector2 adjustedMovement = Vector2.zero;
+                foreach (Collider2D collider in colliders)
+                {
+                    Vector2 closestPoint = collider.ClosestPoint(startingPosition);
+                    Vector2 direction = (closestPoint - startingPosition).normalized;
+                    RaycastHit2D hit = Physics2D.Raycast(startingPosition, direction, movement.magnitude,
+                        playerCollisionLayer);
+                    if (hit.collider == collider)
+                    {
+                        // The player is going to collide with this collider, so adjust the movement vector
+                        float distance = hit.distance;
+                        Vector2 adjustment = direction * (distance - 0.01f);
+                        adjustedMovement += adjustment;
+                    }
+                }
+
+                movement = adjustedMovement;
+            }
+
+            // Use raycasts to detect if the player is about to collide with an enemy
+            RaycastHit2D hitEnemy = Physics2D.Raycast(pc.transform.position, dashVelocity.normalized,
+                movement.magnitude, collisionLayer);
+            if (hitEnemy.collider != null)
+            {
+                GameObject other = hitEnemy.collider.gameObject;
 
                 // Check if the enemy has not been hit before during the current dash
                 if (!hitEnemies.Contains(other))
@@ -64,13 +94,11 @@ public class DashAbility : Ability
                 }
             }
 
-            pc.transform.position = Vector3.Lerp(startingPosition, targetPosition, elapsedTime / duration);
+            pc.transform.position += (Vector3) movement;
 
-            elapsedTime += Time.deltaTime;
+            elapsedTime += delta;
 
             yield return null;
         }
-
-        pc.transform.position = targetPosition;
     }
 }
