@@ -39,7 +39,7 @@ public class ProjectileAbility : Ability
             {
                 GameObject other = hit.collider.gameObject;
 
-                CharacterStats cs = other.GetComponent<CharacterStats>();
+                AbstractStats cs = other.GetComponent<AbstractStats>();
                 if (cs != null)
                 {
                     float health = cs.GetStatValueByName("Health");

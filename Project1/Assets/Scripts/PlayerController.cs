@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform attackLocation;
     public float attackRange;
     public LayerMask enemies;
+    public event Action OnUpdate;
 
     public Animator animator;
     private Vector2 _direction;
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        OnUpdate?.Invoke();
+
         // Изменение направления спрайта
         if (_direction.x<0) {
             Vector3 lTemp = transform.localScale;
@@ -73,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
         // Придание ускорения
 
-        CharacterStats cs = GetComponent<CharacterStats>();
+        AbstractStats cs = GetComponent<AbstractStats>();
         float speed = cs.GetStatValueByName("Movement Speed");
         float speedNormalized = speed / 60;
         _rb.AddForce(_direction*speedNormalized);

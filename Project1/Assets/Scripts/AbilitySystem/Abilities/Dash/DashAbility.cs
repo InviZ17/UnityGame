@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,33 +11,36 @@ public class DashAbility : Ability
     public LayerMask collisionLayer;
     public LayerMask playerCollisionLayer;
 
+    private PlayerController pc;
+    private float elapsedTime;
+    private Vector2 dashVelocity;
+    private HashSet<GameObject> hitEnemies;
+
     public override void Activate(GameObject parent)
     {
-        PlayerController pc = parent.GetComponent<PlayerController>();
+        pc = parent.GetComponent<PlayerController>();
         Camera cam = Camera.main;
 
         Vector3 mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 direction = (new Vector2(mousePos.x, mousePos.y) - (Vector2)pc.transform.position).normalized;
 
-        Vector2 dashVelocity = direction * dashSpeed;
-        Vector2 movement = Vector2.ClampMagnitude(dashVelocity, maxRange);
+        dashVelocity = direction * dashSpeed;
+        elapsedTime = 0f;
 
-        CoroutineRunner.instance.StartCoroutine(PerformDash(pc, movement));
+        hitEnemies = new HashSet<GameObject>();
+
+        pc.OnUpdate += PerformDash;
     }
 
-    private IEnumerator PerformDash(PlayerController pc, Vector2 dashVelocity)
+    private void PerformDash()
     {
-        HashSet<GameObject> hitEnemies = new HashSet<GameObject>(); // Store hit enemies
-
-        float elapsedTime = 0f;
-        while (elapsedTime < maxRange / dashSpeed)
+        if (elapsedTime < maxRange / dashSpeed)
         {
             float delta = Time.deltaTime;
             float remainingTime = (maxRange / dashSpeed) - elapsedTime;
             delta = Mathf.Min(delta, remainingTime);
 
             Vector2 movement = dashVelocity * delta;
-
 
             // Use raycasts to detect if the player is about to collide with a wall
             RaycastHit2D hitWall = Physics2D.Raycast(pc.transform.position, movement.normalized, movement.magnitude, playerCollisionLayer);
@@ -50,8 +51,7 @@ public class DashAbility : Ability
             }
 
             // Use raycasts to detect if the player is about to collide with an enemy
-            RaycastHit2D hitEnemy = Physics2D.Raycast(pc.transform.position, dashVelocity.normalized,
-                movement.magnitude, collisionLayer);
+            RaycastHit2D hitEnemy = Physics2D.Raycast(pc.transform.position, dashVelocity.normalized, movement.magnitude, collisionLayer);
             if (hitEnemy.collider != null)
             {
                 GameObject other = hitEnemy.collider.gameObject;
@@ -61,7 +61,7 @@ public class DashAbility : Ability
                 {
                     hitEnemies.Add(other); // Add the enemy to the hitEnemies HashSet
 
-                    CharacterStats cs = other.GetComponent<CharacterStats>();
+                    AbstractStats cs = other.GetComponent<AbstractStats>();
                     float health = cs.GetStatValueByName("Health");
                     if (health <= 1)
                     {
@@ -79,8 +79,11 @@ public class DashAbility : Ability
             pc.transform.position += (Vector3)movement;
 
             elapsedTime += delta;
-
-            yield return null;
+        }
+        else
+        {
+            // Stop updating when the dash is complete
+            pc.OnUpdate -= PerformDash;
         }
     }
 }

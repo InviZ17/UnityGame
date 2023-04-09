@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CharacterStats : MonoBehaviour
+public abstract class AbstractStats : MonoBehaviour
 {
     [System.Serializable]
     public struct StatValuePair
