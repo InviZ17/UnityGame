@@ -20,9 +20,10 @@ public class BulletScript : MonoBehaviour
         }
         else {
             if (other.gameObject.layer == 6){
-            other.gameObject.GetComponent<Animator>().SetBool("isDead",true);
-            Destroy(other.gameObject,1f);
+                other.gameObject.GetComponent<Animator>().SetBool("isDead",true);
+                Destroy(other.gameObject,1f);
             }
+
             GameObject effect = Instantiate(hitEffect,transform.position,transform.rotation);
             Destroy(effect,1f);
             Destroy(gameObject);
