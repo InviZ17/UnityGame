@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9083948062288963354}
   - component: {fileID: -6480747254684972514}
   m_Layer: 6
-  m_Name: Wizard
+  m_Name: Watcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 4894555
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -694262055, guid: 87dceec692025584da1ea6cc50d6088d, type: 3}
+  m_Sprite: {fileID: 914448809, guid: f4031b5dba0a98c4db81c789e5bf0573, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,7 +106,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.17, y: 0.29}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 0.17, y: 0.29}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats: []
-  _statSet: {fileID: 11400000, guid: 15330d6e435fc944c93ce40b22e0150b, type: 2}
+  _statSet: {fileID: 11400000, guid: 599f36c5b0cea90459120754b30fbc1f, type: 2}
 --- !u!114 &9083948062288963354
 MonoBehaviour:
   m_ObjectHideFlags: 0

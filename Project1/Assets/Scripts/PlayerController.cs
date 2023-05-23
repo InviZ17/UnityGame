@@ -97,9 +97,19 @@ public class PlayerController : MonoBehaviour
         Collider2D[] damage = Physics2D.OverlapCircleAll(attackLocation.position, attackRange, enemies);
         for (int i = 0; i < damage.Length; i++)
         {
-            Animator anim = damage[i].gameObject.GetComponent<Animator>();
-            anim.SetBool("isDead", true);
-            Destroy(damage[i].gameObject, 1f);
+            Damageable d = damage[i].gameObject.GetComponent<Damageable>();
+            
+            // TODO: дописать формулу расчета урона с руки, пока это 1=1 от физ силы
+            float meleeDamage = d.GetStats().GetStatValueByName("Physical Strength");
+
+            // TODO: дописать формулу расчета отдачи от оружия
+            float knockbackForce = 0.01f;
+
+            Vector2 direction = (damage[i].gameObject.transform.position - _rb.transform.position).normalized;
+
+            Damage dmg = new Damage(meleeDamage, direction, knockbackForce, Damage.Type.Physical);
+
+            d.TakeDamage(dmg);
         }
     }
 
@@ -116,19 +126,43 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void UseAbility(InputAction.CallbackContext context)
+    
+
+    private void HandleActiveAbility(InputAction.CallbackContext context, int abilityIndex)
     {
         if (context.started)
         {
-            Debug.Log("ability used");
-            _ah.AbilityUsing = true;
-
+            _ah.SetAbilityUsing(abilityIndex, Ability.SkillStatusUsing);
         }
         else if (context.canceled)
         {
-            _ah.AbilityUsing = false;
+            _ah.SetAbilityUsing(abilityIndex, Ability.SkillStatusNotUsing);
         }
     }
 
+    public void UseAbility(InputAction.CallbackContext context)
+    {
+        HandleActiveAbility(context, Ability.SkillIndexDash);
+    }
+
+    public void UseActiveAbility1(InputAction.CallbackContext context)
+    {
+        HandleActiveAbility(context, Ability.SkillIndexFirst);
+    }
+
+    public void UseActiveAbility2(InputAction.CallbackContext context)
+    {
+        HandleActiveAbility(context, Ability.SkillIndexSecond);
+    }
+
+    public void UseActiveAbility3(InputAction.CallbackContext context)
+    {
+        HandleActiveAbility(context, Ability.SkillIndexThird);
+    }
+
+    public void UseActiveAbility4(InputAction.CallbackContext context)
+    {
+        HandleActiveAbility(context, Ability.SkillIndexFourth);
+    }
 
 }

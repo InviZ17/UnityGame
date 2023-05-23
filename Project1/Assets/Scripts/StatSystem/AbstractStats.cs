@@ -37,11 +37,11 @@ public abstract class AbstractStats : MonoBehaviour
         return 0;
     }
 
-    public void ModifyStatValueByName(string statName, float value)
+    public void SetStatValueByName(string statName, float value)
     {
         if (stats.ContainsKey(statName))
         {
-            stats[statName] += value;
+            stats[statName] = value;
         }
     }
 }

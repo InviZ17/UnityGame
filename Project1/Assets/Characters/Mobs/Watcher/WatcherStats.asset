@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e8a8d19926ef494fa5c0ca4a9f761c3, type: 3}
-  m_Name: WizardStats
+  m_Name: WatcherStats
   m_EditorClassIdentifier: 
   BaseStats:
   - statName: {fileID: 11400000, guid: 58b9a222ead760949aca6675584c0f8b, type: 2}

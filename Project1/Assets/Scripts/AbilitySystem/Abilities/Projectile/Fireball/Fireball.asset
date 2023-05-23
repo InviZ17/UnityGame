@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 5b449161fd6634a4080c80d07681759a, type: 3}
   m_Name: Fireball
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileAbility
+  m_EditorClassIdentifier: 
   name: Fireball
-  cooldownTime: 5
-  activeTime: 1
-  projectilePrefab: {fileID: 7102945352736905960, guid: b1c6b833f4a906448b308eb8abe3831a, type: 3}
-  projectileSpeed: 4
-  maxRange: 2
+  cooldownTime: 1
+  activeTime: 0
+  projectilePrefab: {fileID: 7208181934597178319, guid: d4a20ccb5268b994ea125dc09af539a5, type: 3}
+  projectileSpeed: 0.5
+  maxRange: 5
   collisionLayer:
     serializedVersion: 2
     m_Bits: 64
+  damage: 1

@@ -71,7 +71,7 @@ public class DashAbility : Ability
                     else
                     {
                         Debug.Log("-1");
-                        cs.ModifyStatValueByName("Health", -1);
+                        cs.SetStatValueByName("Health", -1);
                     }
                 }
             }
