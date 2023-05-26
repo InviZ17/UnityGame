@@ -60,6 +60,8 @@ public class DoorSpawner : MonoBehaviour
                 for (int i = 0; i<check.Length;i++){
                     if (check[i].CompareTag("Center")){
                         init = true;
+                        center.GetComponent<RoomHandler>().exits -=1;
+                        center.GetComponent<RoomHandler>().routes +=1;
                         return;
                     }
                 }

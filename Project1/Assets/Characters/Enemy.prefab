@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3860319437534890590}
   - component: {fileID: 459873783727105725}
   - component: {fileID: 3078292813919922487}
+  - component: {fileID: 5898383943297802162}
+  - component: {fileID: 8416008826046026165}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -149,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   speed: 1
+  attackCooldown: 1
 --- !u!50 &459873783727105725
 Rigidbody2D:
   serializedVersion: 4
@@ -184,3 +187,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KnockoutTime: 0
   health: 3
+--- !u!114 &5898383943297802162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6211006995367949899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4c30ee0f7693548b44d121f756b8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats: []
+  _statSet: {fileID: 0}
+--- !u!114 &8416008826046026165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6211006995367949899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6553c054d326e64ea020ca4cfde1c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redFilterDuration: 0.25

@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         float speed = cs.GetStatValueByName("Movement Speed");
         //float speed = 300f;
         float speedNormalized = speed / 60;
-        Debug.Log("Move " + speedNormalized);
+        //Debug.Log("Move " + speedNormalized);
         _rb.AddForce(_direction*speedNormalized);
     }
 

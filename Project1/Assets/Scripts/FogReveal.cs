@@ -11,7 +11,7 @@ public class FogReveal : MonoBehaviour
     private GameObject EnemySpawner;
     void Start()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = !debugReveal;
     }
     void Update(){
         if (debugReveal){
