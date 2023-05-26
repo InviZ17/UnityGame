@@ -21,8 +21,8 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
-  - 
+  - Background
+  - Walls
   - 
   - 
   - 
@@ -50,12 +50,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 645779871
+    locked: 0
+  - name: Walls
+    uniqueID: 1255049739
+    locked: 0
   - name: Objects
     uniqueID: 4894555
     locked: 0
   - name: Player
     uniqueID: 820641269
     locked: 0
+  - name: Enemies
+    uniqueID: 3282129381
+    locked: 0
   - name: Fog
     uniqueID: 335399757
+    locked: 0
+  - name: HUD
+    uniqueID: 3474655349
     locked: 0

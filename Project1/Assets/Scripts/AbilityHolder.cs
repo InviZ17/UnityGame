@@ -1,28 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class AbilityHolder : MonoBehaviour
 {
-    public Ability ability;
-    private float _cooldownTime;
-    private float _activeTime;
-    private bool _abilityUsing;
+    public List<Ability> abilities;
+    private List<float> _cooldownTimes;
+    private List<float> _activeTimes;
+    private List<bool> _abilityUsing;
+    private List<AbilityState> _abilityStates;
 
-    public bool AbilityUsing
+    void Awake()
     {
-        get
+        int abilityCount = abilities.Count;
+        _abilityUsing = new List<bool>(abilityCount);
+        _cooldownTimes = new List<float>(abilityCount);
+        _activeTimes = new List<float>(abilityCount);
+        _abilityStates = new List<AbilityState>(abilityCount);
+
+        for (int i = 0; i < abilityCount; i++)
         {
-            return _abilityUsing;
-        }
-        set
-        {
-            _abilityUsing = value;
+            _abilityUsing.Add(false);
+            _cooldownTimes.Add(0);
+            _activeTimes.Add(0);
+            _abilityStates.Add(AbilityState.ready);
         }
     }
 
+    public bool GetAbilityUsing(int abilityIndex)
+    {
+        return _abilityUsing[abilityIndex];
+    }
+
+    public void SetAbilityUsing(int abilityIndex, bool val)
+    {
+        _abilityUsing[abilityIndex] = val;
+    }
 
     enum AbilityState
     {
@@ -31,44 +44,48 @@ public class AbilityHolder : MonoBehaviour
         cooldown
     }
 
-    private AbilityState _state = AbilityState.ready;
-
     void Update()
     {
-        switch (_state)
+        for (int abilityIndex = 0; abilityIndex < abilities.Count; abilityIndex++)
         {
-            case AbilityState.ready:
-                if (_abilityUsing)
-                {
-                    Debug.Log("using ability...");
-                    ability.Activate(gameObject);
-                    _state = AbilityState.active;
-                    _activeTime = ability.activeTime;
-                }
-                break;
-            case AbilityState.active:
-                if (_activeTime > 0)
-                {
-                    _activeTime -= Time.deltaTime;
-                }
-                else
-                {
-                    _state = AbilityState.cooldown;
-                    _cooldownTime = ability.cooldownTime;
-                }
-                break;
-            case AbilityState.cooldown:
-                if (_cooldownTime > 0)
-                {
-                    _cooldownTime -= Time.deltaTime;
-                }
-                else
-                {
-                    _state = AbilityState.ready;
-                }
-                break;
+            var ability = abilities[abilityIndex];
+            if (ability == null) continue;
+
+            var state = _abilityStates[abilityIndex];
+
+            switch (state)
+            {
+                case AbilityState.ready:
+                    if (GetAbilityUsing(abilityIndex))
+                    {
+                        ability.Activate(gameObject);
+                        _abilityStates[abilityIndex] = AbilityState.active;
+                        //_abilityStates[abilityIndex] = AbilityState.cooldown;
+                        _activeTimes[abilityIndex] = ability.activeTime;
+                    }
+                    break;
+                case AbilityState.active:
+                    if (_activeTimes[abilityIndex] > 0)
+                    {
+                        _activeTimes[abilityIndex] -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        _abilityStates[abilityIndex] = AbilityState.cooldown;
+                        _cooldownTimes[abilityIndex] = ability.cooldownTime;
+                    }
+                    break;
+                case AbilityState.cooldown:
+                    if (_cooldownTimes[abilityIndex] > 0)
+                    {
+                        _cooldownTimes[abilityIndex] -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        _abilityStates[abilityIndex] = AbilityState.ready;
+                    }
+                    break;
+            }
         }
     }
-
-    
 }
