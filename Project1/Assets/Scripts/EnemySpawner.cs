@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject center;
     public bool disableSpawn = false;
     public List<GameObject> enemies;
-    public GameObject enemy;
+    private GameObject[] enemy;
     public GameObject item;
     public int maxEnemy;
     private GameLogic Logic;
@@ -18,13 +18,14 @@ public class EnemySpawner : MonoBehaviour
     {
         center = this.transform.parent.gameObject;
         Logic = GameObject.FindGameObjectWithTag("GameLogic").GetComponent<GameLogic>();
+        enemy = Logic.GetComponent<GameLogic>().enemy;
     }
     public void Spawn(){
         if (!disableSpawn){
             
             if (Logic.farestRoom == center){
                 Debug.Log("Boss");
-                Instantiate(enemy, center.transform.position, enemy.transform.rotation,this.gameObject.transform);
+                Instantiate(Logic.GetComponent<GameLogic>().boss, center.transform.position, Logic.GetComponent<GameLogic>().boss.transform.rotation,this.gameObject.transform);
             }
             else if (center.GetComponent<RoomHandler>().routes == 1){
                 SpawnItem();
@@ -32,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
             else {
                 for (int j = 0; j<Random.Range(1, maxEnemy); j++){
                 int rand = Random.Range(0,spawns.Length);
-                enemies.Add(Instantiate(enemy, spawns[rand].transform.position,spawns[rand].transform.rotation, this.gameObject.transform));
+                enemies.Add(Instantiate(enemy[Random.Range(0,enemy.Length)], spawns[rand].transform.position,spawns[rand].transform.rotation, this.gameObject.transform));
                 for (int k = rand; k<spawns.Length-1; k++){
                     spawns[k] = spawns[k+1];
                 }

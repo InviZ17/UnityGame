@@ -12,6 +12,7 @@ public class AI : MonoBehaviour
     //private GameObject pTemp;
     private Rigidbody2D rb;
     private DamageHandler Dh;
+    public int damage;
     void Start()
     {
         player=GameObject.FindGameObjectWithTag("Player");
@@ -29,13 +30,23 @@ public class AI : MonoBehaviour
         //transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
         if (Time.time >= Dh.KnockoutTime)
         rb.MovePosition(Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime));
+        if (direction.x<0) {
+            Vector3 lTemp = transform.localScale;
+            lTemp.x = -1f;
+            transform.localScale = lTemp;
+        }
+        else if (direction.x>0){
+            Vector3 lTemp = transform.localScale;
+            lTemp.x = 1f;
+            transform.localScale = lTemp;
+        }
     }
     void OnCollisionStay2D(Collision2D other){
         if(player.GetInstanceID()==other.gameObject.GetInstanceID()){
             if (Time.time >= previousAttackTime+attackCooldown && Time.time >= Dh.KnockoutTime){
                 previousAttackTime = Time.time;
                 GetComponent<Animator>().SetBool("attacking", true);
-                other.gameObject.GetComponent<PlayerHealth>().takeDamage(1);
+                other.gameObject.GetComponent<PlayerHealth>().takeDamage(damage);
             }
             
         }

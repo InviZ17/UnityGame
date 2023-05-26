@@ -13,6 +13,7 @@ public class DoorSpawner : MonoBehaviour
     public float roomOfs;
     public GameObject center;
     public EnemySpawner enemySpawner;
+    public GameObject door;
 
     private int opened;
     private GameObject room;
@@ -55,6 +56,7 @@ public class DoorSpawner : MonoBehaviour
 
 
     void Spawn(){ 
+        enemySpawner = center.GetComponent<RoomHandler>().roomLayout.GetComponent<EnemySpawner>();
         if (!init){
             Collider2D[] check = Physics2D.OverlapCircleAll( this.transform.position + roomOffset, 0.01f);
                 for (int i = 0; i<check.Length;i++){
@@ -111,9 +113,18 @@ public class DoorSpawner : MonoBehaviour
     //     }
     // }
     void Update(){
+        if (enemySpawner != null){
+            if (!needWall && enemySpawner.enemies.Count == 0){
+                door.GetComponent<Animator>().SetBool("opened", true);
+            }
+            else {
+                door.GetComponent<Animator>().SetBool("opened", false);
+            }
+        }
+        
         if (needWall && wall1 == null){
             center.GetComponent<RoomHandler>().exits -=1;
-
+            door.GetComponent<SpriteRenderer>().enabled = false;
             wall1 = Instantiate(wall, transform.position, wall.transform.rotation,this.gameObject.transform);
             wall1.transform.Rotate(rot);
         }
@@ -121,7 +132,7 @@ public class DoorSpawner : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D other){
-        enemySpawner = center.GetComponent<RoomHandler>().roomLayout.GetComponent<EnemySpawner>();
+        
         if (!init){
             if (other.CompareTag("Door") && other.GetComponent<DoorSpawner>().spawned == true){
                     init = true;
@@ -136,7 +147,7 @@ public class DoorSpawner : MonoBehaviour
         }
         
         if (other.CompareTag("Player") && !needWall && enemySpawner.enemies.Count == 0){
-            GameObject.FindGameObjectWithTag("MainCamera").transform.position += roomOffset*2-playerOffset/3f;
+            //GameObject.FindGameObjectWithTag("MainCamera").transform.position += roomOffset*2-playerOffset/3f;
             other.transform.position += playerOffset;
         }
     }
