@@ -82,7 +82,9 @@ public class PlayerController : MonoBehaviour
 
         AbstractStats cs = GetComponent<AbstractStats>();
         float speed = cs.GetStatValueByName("Movement Speed");
+        //float speed = 300f;
         float speedNormalized = speed / 60;
+        Debug.Log("Move " + speedNormalized);
         _rb.AddForce(_direction*speedNormalized);
     }
 

@@ -16,13 +16,11 @@ MonoBehaviour:
   cooldownTime: 0
   activeTime: 0.5
   dashSpeed: 50
-  maxClampMagnitude: 0.5
   maxRange: 3
   maxHitRange: 3
-
   collisionLayer:
     serializedVersion: 2
     m_Bits: 64
   playerCollisionLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8
