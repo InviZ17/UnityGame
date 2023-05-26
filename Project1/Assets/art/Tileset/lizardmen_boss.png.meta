@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -673,10 +673,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      lizardmen_boss_19: -839601732
+      lizardmen_boss_5: -551314450
       lizardmen_boss_7: -754092887
       lizardmen_boss_23: -968910456
-      lizardmen_boss_13: -1008174738
       lizardmen_boss_0: -790429397
       lizardmen_boss_4: -1356458418
       lizardmen_boss_11: 160129526
@@ -689,6 +688,7 @@ TextureImporter:
       lizardmen_boss_20: -814841875
       lizardmen_boss_15: -940366395
       lizardmen_boss_25: -1001243564
+      lizardmen_boss_13: -1008174738
       lizardmen_boss_3: 557553172
       lizardmen_boss_2: 1094020109
       lizardmen_boss_6: -328507747
@@ -696,7 +696,7 @@ TextureImporter:
       lizardmen_boss_12: 2069556929
       lizardmen_boss_8: 716903677
       lizardmen_boss_16: 1464609299
-      lizardmen_boss_5: -551314450
+      lizardmen_boss_19: -839601732
       lizardmen_boss_14: 1529027113
       lizardmen_boss_18: -153450990
   spritePackingTag: 

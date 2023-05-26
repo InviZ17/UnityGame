@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 3577903771289157392}
   - component: {fileID: 3577903771289157394}
   - component: {fileID: 3577903771289157395}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallL2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 3577903771413014327}
   - component: {fileID: 3577903771413014321}
   - component: {fileID: 3577903771413014326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallB2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 3577903771563119290}
   - component: {fileID: 3577903771563119236}
   - component: {fileID: 3577903771563119237}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallR2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 3577903772378071413}
   - component: {fileID: 3577903772378071415}
   - component: {fileID: 3577903772378071412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallR1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 3577903772879717323}
   - component: {fileID: 3577903772879717333}
   - component: {fileID: 3577903772879717322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallT2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 3577903772979105119}
   - component: {fileID: 3577903772979105113}
   - component: {fileID: 3577903772979105118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallL1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 3577903772999226412}
   - component: {fileID: 3577903772999226414}
   - component: {fileID: 3577903772999226415}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallB1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1006,7 @@ GameObject:
   - component: {fileID: 3577903773403996135}
   - component: {fileID: 3577903773403996129}
   - component: {fileID: 3577903773403996134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallT1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1306,6 +1306,7 @@ MonoBehaviour:
   - {fileID: 7543542798098462745, guid: 328467a0b8921f94ab532771b210732b, type: 3}
   - {fileID: 102359994295790496, guid: 8a1f9b3e12f002842aaf4116f01efe5f, type: 3}
   - {fileID: 8738324015665345155, guid: 16ff365703c34624eb201fdee68536a3, type: 3}
+  - {fileID: 7436553166525480884, guid: 9ec1fefcf9b4eee4a890844e5c339d1a, type: 3}
   roomLayout: {fileID: 0}
 --- !u!1001 &2983745138238566415
 PrefabInstance:
