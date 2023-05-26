@@ -33,9 +33,45 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseAbility",
+                    "name": "UseDash",
                     "type": "Button",
                     "id": "28d9a497-b94e-4d42-b373-e000d3ae16c7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseActiveAbility1",
+                    "type": "Button",
+                    "id": "c625f5a8-8bf5-4497-97d0-6a6a390cb572",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseActiveAbility2",
+                    "type": "Button",
+                    "id": "76056508-f715-44b0-ac6f-d4ab58666734",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseActiveAbility3",
+                    "type": "Button",
+                    "id": "49cea6cd-da27-42d2-9e55-edd9e5cdb618",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseActiveAbility4",
+                    "type": "Button",
+                    "id": "e75178f2-9bbf-4c23-b5eb-f0b58a22e978",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -270,7 +306,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseAbility",
+                    "action": "UseDash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -281,7 +317,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseAbility",
+                    "action": "UseDash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9b0769a-4718-466c-889c-f2ff3613ab5c",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseActiveAbility1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c996a337-1efe-41da-8ce8-cab93db5c70b",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseActiveAbility2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00f70f2b-0378-4fab-a547-364e394053d3",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseActiveAbility3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43e25293-3c14-44ce-b273-04ffd0429731",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseActiveAbility4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
