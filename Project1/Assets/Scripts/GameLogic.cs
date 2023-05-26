@@ -12,7 +12,9 @@ public class GameLogic : MonoBehaviour
     public float maxDist = 0f;
     public GameObject farestRoom;
     public GameObject room;
+    public GameObject boss;
     public GameObject wall;
+    public GameObject[] enemy;
     private GameObject[] fog;
     void Start()
     {
