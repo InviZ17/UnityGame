@@ -11,6 +11,7 @@ public class ProjectileAbility : Ability
     public float projectileSpeed;
     public float maxRange;
     public LayerMask collisionLayer;
+    public float damage;
 
     public override void Activate(GameObject parent)
     {
@@ -33,25 +34,30 @@ public class ProjectileAbility : Ability
 
         while (elapsedTime <= maxRange / projectileSpeed)
         {
-            RaycastHit2D hit = Physics2D.Raycast(projectile.transform.position, projectile.GetComponent<Rigidbody2D>().velocity.normalized, Time.deltaTime * projectileSpeed, collisionLayer);
+            if (projectile == null)
+            {
+                yield break;
+            }
+            float raycastDistance = 0.1f;
+            RaycastHit2D hit = Physics2D.Raycast(projectile.transform.position, projectile.GetComponent<Rigidbody2D>().velocity.normalized, raycastDistance, collisionLayer);
 
             if (hit.collider != null)
             {
                 GameObject other = hit.collider.gameObject;
 
-                CharacterStats cs = other.GetComponent<CharacterStats>();
+                AbstractStats cs = other.GetComponent<AbstractStats>();
                 if (cs != null)
                 {
                     float health = cs.GetStatValueByName("Health");
-                    if (health <= 1)
+                    if (health <= damage)
                     {
                         other.gameObject.GetComponent<Animator>().SetBool("isDead", true);
                         Destroy(other.gameObject, 1f);
                     }
                     else
                     {
-                        Debug.Log("-1");
-                        cs.ModifyStatValueByName("Health", -1);
+                        Debug.Log($"dealt {damage}");
+                        cs.SetStatValueByName("Health", -damage);
                     }
                 }
 

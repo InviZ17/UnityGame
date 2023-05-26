@@ -9,20 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78245376a8b1b543a18707cf66d9a26, type: 3}
-  m_Name: Dash
+  m_Script: {fileID: 11500000, guid: 5b449161fd6634a4080c80d07681759a, type: 3}
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  name: Dash
-  cooldownTime: 0
-  activeTime: 0.5
-  dashSpeed: 50
-  maxClampMagnitude: 0.5
-  maxRange: 3
-  maxHitRange: 3
-
+  name: Fireball
+  cooldownTime: 1
+  activeTime: 0
+  projectilePrefab: {fileID: 7208181934597178319, guid: d4a20ccb5268b994ea125dc09af539a5, type: 3}
+  projectileSpeed: 0.5
+  maxRange: 5
   collisionLayer:
     serializedVersion: 2
     m_Bits: 64
-  playerCollisionLayer:
-    serializedVersion: 2
-    m_Bits: 256
+  damage: 1
