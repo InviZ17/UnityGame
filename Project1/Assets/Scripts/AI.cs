@@ -7,6 +7,8 @@ public class AI : MonoBehaviour
     public GameObject player;
     public float speed;
     private float distance;
+    public float attackCooldown = 1f;
+    private float previousAttackTime = 0f;
     //private GameObject pTemp;
     private Rigidbody2D rb;
     private DamageHandler Dh;
@@ -21,6 +23,7 @@ public class AI : MonoBehaviour
     
     void FixedUpdate()
     {
+        GetComponent<Animator>().SetBool("attacking", false);
         distance = Vector2.Distance(transform.position, player.transform.position);
         Vector2 direction = player.transform.position - transform.position;
         //transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
@@ -29,9 +32,12 @@ public class AI : MonoBehaviour
     }
     void OnCollisionStay2D(Collision2D other){
         if(player.GetInstanceID()==other.gameObject.GetInstanceID()){
-            if (Time.time >= Dh.KnockoutTime) {
+            if (Time.time >= previousAttackTime+attackCooldown && Time.time >= Dh.KnockoutTime){
+                previousAttackTime = Time.time;
+                GetComponent<Animator>().SetBool("attacking", true);
                 other.gameObject.GetComponent<PlayerHealth>().takeDamage(1);
             }
+            
         }
     }
 }

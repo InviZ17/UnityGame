@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3523309127557863003}
   - component: {fileID: 240310687862836121}
   - component: {fileID: 4270340215990422128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3785,7 +3785,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 820641269
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -3803,7 +3803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2828472682248538354}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawn1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3834,7 +3834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4054728364316747722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3865,7 +3865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 357750755626182674}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawn1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3897,7 +3897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3045750022066476821}
   - component: {fileID: 1773636135578829944}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3941,7 +3941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8936936424599022632}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ItemSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3973,7 +3973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8349727125227869107}
   - component: {fileID: 1628701218004531591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RoomClean
   m_TagString: EnemySpawn
   m_Icon: {fileID: 0}
@@ -4034,7 +4034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565350531933451346}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawn1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

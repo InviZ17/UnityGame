@@ -75,7 +75,9 @@ public class PlayerMelee : MonoBehaviour
 
         //Обработка попадания
         if (isAttacking){
+
         Collider2D[] damageC = Physics2D.OverlapCircleAll( attackLocation.position, 0.05f*attackRadius, enemies );
+        //Debug.Log("Attacking"+ damageC.Length);
         if (damageC.Length>0){
               for (int i = 0; i < damageC.Length; i++)
                  {

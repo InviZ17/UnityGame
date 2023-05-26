@@ -56,7 +56,13 @@ public class DoorSpawner : MonoBehaviour
 
     void Spawn(){ 
         if (!init){
-  
+            Collider2D[] check = Physics2D.OverlapCircleAll( this.transform.position + roomOffset, 0.01f);
+                for (int i = 0; i<check.Length;i++){
+                    if (check[i].CompareTag("Center")){
+                        init = true;
+                        return;
+                    }
+                }
             if ((center.GetComponent<RoomHandler>().exits == 1 && Logic.roomNumber < Logic.maxRooms)
                 || (center.GetComponent<RoomHandler>().exits - center.GetComponent<RoomHandler>().routes == 1 && Logic.roomNumber < Logic.maxRooms)){
                 opened = 1;
@@ -67,21 +73,16 @@ public class DoorSpawner : MonoBehaviour
             else {
                 opened = 0;
             }
-            if (opened == 1) {
-                Collider2D[] check = Physics2D.OverlapCircleAll( this.transform.position + roomOffset, 0.01f);
-                for (int i = 0; i<check.Length;i++){
-                    if (check[i].CompareTag("Center")){
-                        init = true;
-                    }
-                }
-                if (!init){
+            //if (opened == 1) {
+                
+                if (!init && opened==1){
                     room1 = Instantiate(room, this.transform.position + roomOffset, room.transform.rotation);
                     Logic.roomNumber +=1;
                     spawned = true;
                     center.GetComponent<RoomHandler>().exits -=1;
                     center.GetComponent<RoomHandler>().routes +=1;
                 }
-            }
+            //}
             else {
                 needWall = true;
             }

@@ -18,7 +18,7 @@ MonoBehaviour:
   dashSpeed: 50
   maxClampMagnitude: 0.5
   maxRange: 3
-  maxHitRange: 0.1
+  maxHitRange: 3
   collisionLayer:
     serializedVersion: 2
     m_Bits: 64

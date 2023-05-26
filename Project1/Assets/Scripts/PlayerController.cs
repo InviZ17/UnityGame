@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform attackLocation;
     public float attackRange;
     public LayerMask enemies;
+    public float damageValue = 1f;
 
     public Animator animator;
     private Vector2 _direction;
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
         if (meleeAttack)
         {
             animator.SetBool("isAttacking", true);
-            MeleeAttack();
+            //MeleeAttack();
         }
         else
         {
@@ -86,18 +87,19 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void MeleeAttack()
-    {
+    // private void MeleeAttack()
+    // {
 
-        // Обработка попадания
-        Collider2D[] damage = Physics2D.OverlapCircleAll(attackLocation.position, attackRange, enemies);
-        for (int i = 0; i < damage.Length; i++)
-        {
-            Animator anim = damage[i].gameObject.GetComponent<Animator>();
-            anim.SetBool("isDead", true);
-            Destroy(damage[i].gameObject, 1f);
-        }
-    }
+    //     // Обработка попадания
+    //     Collider2D[] damage = Physics2D.OverlapCircleAll(attackLocation.position, attackRange, enemies);
+    //     for (int i = 0; i < damage.Length; i++)
+    //     {
+    //         damage[i].GetComponent<DamageHandler>().TakeDamage(damageValue,0f,new Vector2());
+    //         // Animator anim = damage[i].gameObject.GetComponent<Animator>();
+    //         // anim.SetBool("isDead", true);
+    //         // Destroy(damage[i].gameObject, 1f);
+    //     }
+    // }
 
     public void Attack(InputAction.CallbackContext context)
     {

@@ -312,6 +312,7 @@ MonoBehaviour:
   enemies:
     serializedVersion: 2
     m_Bits: 64
+  damageValue: 1
   animator: {fileID: 313927254}
 --- !u!95 &313927254 stripped
 Animator:
@@ -332,6 +333,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats: []
   playerStatSet: {fileID: 11400000, guid: 09ba78b0daf6a7143a6a1cbd267afb36, type: 2}
+--- !u!114 &313927260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313927238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556bac4fec9981440af63c8df7d37ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 4
+  invul: 1
+  invulnerability: 1
+--- !u!114 &313927261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313927238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1050f1587b7499e4bb0b43fc1f4fea00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 0.3
+  attackRadius: 2
+  damage: 1
+  knockback: 1
+  knockoutDuration: 1
+  attackLocation: {fileID: 966089127}
+  attackRange: 1
+  enemies:
+    serializedVersion: 2
+    m_Bits: 64
+  attackRate: 2
+  attackDuration: 0.5
 --- !u!1 &357233719
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +615,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1237831967291664558, guid: d83c9d0fc3e5487419e796bbb815a5e7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2163824706832385356, guid: d83c9d0fc3e5487419e796bbb815a5e7, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -678,6 +722,10 @@ PrefabInstance:
     - target: {fileID: 4637469713738295463, guid: d83c9d0fc3e5487419e796bbb815a5e7, type: 3}
       propertyPath: m_Color.r
       value: 0.9716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 4637469713738295463, guid: d83c9d0fc3e5487419e796bbb815a5e7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5991209661492319518, guid: d83c9d0fc3e5487419e796bbb815a5e7, type: 3}
       propertyPath: nockback
@@ -939,6 +987,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3422941018833531870, guid: d741e1f2d05a0db4d8c69b894a042622, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3577903772468596376, guid: d741e1f2d05a0db4d8c69b894a042622, type: 3}
       propertyPath: m_Name
       value: Room2

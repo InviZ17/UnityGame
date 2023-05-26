@@ -49,18 +49,19 @@ public class DashAbility : Ability
                 {
                     hitEnemies.Add(other); // Add the enemy to the hitEnemies HashSet
 
-                    CharacterStats cs = other.GetComponent<CharacterStats>();
-                    float health = cs.GetStatValueByName("Health");
-                    if (health <= 1)
-                    {
-                        other.gameObject.GetComponent<Animator>().SetBool("isDead", true);
-                        Destroy(other.gameObject, 1f);
-                    }
-                    else
-                    {
-                        Debug.Log("-1");
-                        cs.ModifyStatValueByName("Health", -1);
-                    }
+                    DamageHandler cs = other.GetComponent<DamageHandler>();
+                    cs.TakeDamage(1f,0f,new Vector2());
+                    //float health = cs.GetStatValueByName("Health");
+                    // if (health <= 1)
+                    // {
+                    //     other.gameObject.GetComponent<Animator>().SetBool("isDead", true);
+                    //     Destroy(other.gameObject, 1f);
+                    // }
+                    // else
+                    // {
+                    //     Debug.Log("-1");
+                    //     cs.ModifyStatValueByName("Health", -1);
+                    // }
                 }
             }
 
