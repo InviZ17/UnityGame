@@ -6,7 +6,12 @@ public class DamageHandler : MonoBehaviour
 {
     public float KnockoutTime = 0f;
     public float health = 3f;
+    private bool isDead = false;
+    private IEnumerator Death(){
+            gameObject.GetComponent<Animator>().SetBool("isDead", true);
+            yield return new WaitForSeconds(4);
 
+    }
     void Update()
     {
         if (health<=0){

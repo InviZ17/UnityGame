@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556bac4fec9981440af63c8df7d37ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 5
   invul: 1
   invulnerability: 1
 --- !u!114 &313927261
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomNumber: 0
-  maxRooms: 10
+  maxRooms: 30
   roomOffset: 7.04
   maxDist: 0
   farestRoom: {fileID: 0}
@@ -848,6 +848,9 @@ MonoBehaviour:
   wall: {fileID: 8427084738611846018, guid: f39a5406b40f7b048acc1ea9bb7b60ad, type: 3}
   enemy:
   - {fileID: 6211006995367949899, guid: 062033c7dc71ab344af1a2652cce236e, type: 3}
+  - {fileID: 6211006995367949899, guid: 062033c7dc71ab344af1a2652cce236e, type: 3}
+  - {fileID: 3507652797664855468, guid: 0bb7b36da5e32f141befea7629a886dd, type: 3}
+  - {fileID: 1700053919526906743, guid: b2c895cfee3077c43a9b510bded86668, type: 3}
 --- !u!1 &1261764591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,6 +1523,14 @@ PrefabInstance:
       propertyPath: roomLayout
       value: 
       objectReference: {fileID: 8738324015665345155, guid: 16ff365703c34624eb201fdee68536a3, type: 3}
+    - target: {fileID: 4272171446505013661, guid: d741e1f2d05a0db4d8c69b894a042622, type: 3}
+      propertyPath: rooms.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272171446505013661, guid: d741e1f2d05a0db4d8c69b894a042622, type: 3}
+      propertyPath: rooms.Array.data[3]
+      value: 
+      objectReference: {fileID: 7436553166525480884, guid: 9ec1fefcf9b4eee4a890844e5c339d1a, type: 3}
     - target: {fileID: 5654708467147216194, guid: d741e1f2d05a0db4d8c69b894a042622, type: 3}
       propertyPath: debugReveal
       value: 0
