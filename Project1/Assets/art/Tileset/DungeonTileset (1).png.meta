@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -2872,10 +2872,10 @@ TextureImporter:
       DungeonTileset (1)_58: 1553951098
       DungeonTileset (1)_28: 888303143
       DungeonTileset (1)_0: 1417129970
-      DungeonTileset (1)_18: 1830837651
       DungeonTileset (1)_73: 134101636
-      DungeonTileset (1)_81: 591056330
       DungeonTileset (1)_118: 685700513
+      DungeonTileset (1)_18: 1830837651
+      DungeonTileset (1)_81: 591056330
       DungeonTileset (1)_76: 1796450573
       DungeonTileset (1)_102: 1997028364
       DungeonTileset (1)_17: 1483443125
