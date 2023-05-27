@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 10; 
-    public int health = 4;
+    public int health = 10;
     public float invul =1f;
     private float nextInvul;
     public bool invulnerability = true;
@@ -27,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         Slider s = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
-        s.value = health / maxHealth;
+        s.SetValueWithoutNotify(health / maxHealth);
+        // s.value = 
     }
 }
